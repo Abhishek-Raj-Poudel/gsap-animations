@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+
+
+
+<body class="">
+  <div class="h-screen bg-slate-900 text-white flex flex-col gap-6 justify-center items-center">
+      <p class="text-4xl">Hello</p>
+      <p class="">Scroll Down please</p>
+      <p class="text-4xl">👇</p>
+  </div>
+
+  <!-- Ensure .content has a height -->
+  <div class="content relative grid grid-cols-2 gap-5 min-h-screen overflow-hidden pt-[300px]">
+    <div class="cards relative w-full overflow-hidden">
+      <div class="absolute grid min-h-[300px]  p-5 gap-6 bg-green-300 w-full" id="card1">
+        <p>Card 1</p>
+      </div>
+      <div class="absolute grid min-h-[300px] p-5 gap-6 bg-red-300 w-full" id="card2">
+        <p>Card 2 </p>
+      </div>
+      <div class="absolute grid min-h-[300px] p-5 gap-6 bg-yellow-300 w-full" id="card3">
+        <p>Card 3</p>
+      </div>
+      <div class="absolute grid min-h-[300px] p-5 gap-6 bg-sky-300 w-full" id="card4">
+        <p>Card 4</p>
+      </div>
+    </div>
+
+    <div class="images relative w-full overflow-hidden">
+      <div class="absolute size-[300px] bg-red-500 w-full p-5" id="image1">
+        <p>Image 1</p>
+      </div>
+      <div class="absolute size-[300px] bg-blue-400 w-full p-5" id="image2">
+        <p>Image 2</p>
+      </div>
+      <div class="absolute size-[300px] bg-teal-500 w-full p-5" id="image3">
+        <p>Image 3</p>
+      </div>
+      <div class="absolute size-[300px] bg-rose-500 w-full p-5" id="image4">
+        <p>Image 4</p>
+      </div>
+    </div>
+  </div>
+
+  <div class=" text-4xl w-full h-screen bg-slate-900 text-white flex justify-center items-center">
+    Bye 👋
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const tl = gsap.timeline();
+      tl
+        .from('#card2', {xPercent: -100, },)
+        .from('#image2', {xPercent: 100, })
+        .from('#card3', {xPercent: -100, },)
+        .from('#image3', {xPercent: 100, })
+        .from('#card4', {xPercent: -100, },)
+        .from('#image4', {xPercent: 100, })
+
+      ScrollTrigger.create({
+        animation: tl,
+        trigger: '.content',
+        start: 'top top',
+        end: '+=5000',
+        scrub: true,
+        pin: true,
+        anticipatePin: 1,
+      });
+    });
+  </script>
+</body>
+
+
+
+</html>
